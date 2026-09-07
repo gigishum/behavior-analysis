@@ -1,4 +1,4 @@
-# DLC + SimBA + custom code
+# DLC + SimBA + Behavioral Analysis
 
 ## Purpose
 * Pose estimation with [**DeepLabCut (DLC)**](https://deeplabcut.github.io/DeepLabCut/README.html)
