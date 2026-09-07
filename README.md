@@ -43,6 +43,7 @@
 2. `conda create --name deeplabcut python=3.12`
 3. `conda activate deeplabcut`
 
+
 ### Install SimBA
 1. Open Anaconda Prompt
 2. `conda create --name simba python=3.6`
