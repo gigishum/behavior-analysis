@@ -1,30 +1,33 @@
-# DLC + SimBA + Behavioral Analysis
+# DLC + SimBA
 
 ## Purpose
 * Pose estimation with [**DeepLabCut (DLC)**](https://deeplabcut.github.io/DeepLabCut/README.html)
 * Behavioral classification with [**Simple Behavioral Analysis (SimBA)**](https://simba-uw-tf-dev.readthedocs.io/en/latest/index.html) 
-* Downstream behavioral analysis with custom scripts
 
 ## Workflow overview
-DLC project creation → labeling → training → analysis → SimBA import → classification → downstream notebooks
+DLC → label frames → train DLC network → analyze videos → SimBA → label videos → train SimBA classifiers → analyze videos
 
 ## Installation
+
+Make sure you install and run DLC and SimBA in separate conda environments because they use different Python versions.
 
 ### Install DLC
 1. Open Anaconda Prompt
 2. `conda create --name deeplabcut python=3.12`
 3. `conda activate deeplabcut`
+4. `pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128` # analysis workstation 1
+5. `pip install deeplabcut[gui]`
+6. `python -c "import torch; print(torch.cuda.is_available())"` # should print out "True"
+7. `python -m deeplabcut` # launch dlc
 
 
 ### Install SimBA
 1. Open Anaconda Prompt
 2. `conda create --name simba python=3.6`
 3. `conda activate simba`
+4. `pip install simba-uw-tf-dev`
+5. `simba` # launch simba
 
-### Install Behavioral Analysis
-1. Open Anaconda Prompt
-2. `conda create --name behav python=3.13`
-3. `conda activate behav`
 
 ## Citations
 ### DeepLabCut
