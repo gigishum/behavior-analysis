@@ -6,13 +6,19 @@
 * Behavioral classification with [**Simple Behavioral Analysis (SimBA)**](https://simba-uw-tf-dev.readthedocs.io/en/latest/index.html) 
 
 ## Workflow overview
-DLC → label frames → train DLC network → analyze videos
-MARS/BENTO → label frames for training data
-SimBA → train behavioral classifiers → analyze videos
+* **DLC** → extract frames → label body parts in napari → train DLC network → output estimated pose coordinates (.csv/.h5) and videos (.mp4)
+* **MARS/BENTO** → manually label frames → output labeled behavioral bouts with start/end time stamps (.annot) 
+  * Behaviors: close_investigation, rump_attack, nape_attack, mount, defensive_rear, social_groom, huddle_like
+  * Have clear inclusion/exclusion criteria for each behavior
+  * Label in an actor-agnostic way
+* **SimBA** → create project → import DLC pose estimation (.csv) and MARS behavior labels (.annot) train behavioral classifiers → analyze videos <br/>
+  * Follow [this tutorial walkthrough](https://simba-uw-tf-dev.readthedocs.io/en/latest/Scenario1.html) to create a SimBA project
+  * [Import MARS annotations](https://github.com/sgoldenlab/simba/blob/master/docs/third_party_annot.md)
 
-## Installation
-
-Make sure you install and run DLC and SimBA in separate conda environments because they use different Python versions.
+## Pre-requisites
+1. Install Python 3.x version
+2. Install Miniconda3
+3. Ideally a GPU with suitable CUDA version and PyTorch installation
 
 ### Install DLC
 1. Open Anaconda Prompt
@@ -23,6 +29,12 @@ Make sure you install and run DLC and SimBA in separate conda environments becau
 6. `python -c "import torch; print(torch.cuda.is_available())"` # should print out "True"
 7. `python -m deeplabcut` # launch dlc
 
+### Install BENTO
+1. Download bento source code zip file from [here](https://github.com/neuroethology/bento/releases)
+2. Open Anaconda Prompt
+5. `cd path_to_bento_folder`
+6. `conda env create -f bento.yml`
+7. `python src/bento.py`
 
 ### Install SimBA
 1. Open Anaconda Prompt
