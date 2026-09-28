@@ -7,18 +7,21 @@
 
 ## Workflow overview
 * **DLC** → extract frames → label body parts in napari → train DLC network → output estimated pose coordinates (.csv/.h5) and videos (.mp4)
+  * Follow [this tutorial walkthrough](https://deeplabcut.github.io/DeepLabCut/docs/beginner-guides/beginners-guide.html) to create a DLC project
+  * Annotating 100-200 frames from 10 videos would already give you a pretty good result
 * **MARS/BENTO** → manually label frames → output labeled behavioral bouts with start/end time stamps (.annot) 
-  * Behaviors: close_investigation, rump_attack, nape_attack, mount, defensive_rear, social_groom, huddle_like
   * Have clear inclusion/exclusion criteria for each behavior
   * Label in an actor-agnostic way
 * **SimBA** → create project → import DLC pose estimation (.csv) and MARS behavior labels (.annot) train behavioral classifiers → analyze videos <br/>
   * Follow [this tutorial walkthrough](https://simba-uw-tf-dev.readthedocs.io/en/latest/Scenario1.html) to create a SimBA project
-  * [Import MARS annotations](https://github.com/sgoldenlab/simba/blob/master/docs/third_party_annot.md)
+  * SimBA trains a separate random forest classifier for each behavior
+  * You can annotate videos using the SimBA GUI, but I do it using Caltech's [MARS/BENTO](https://github.com/neuroethology/bentoMAT)
+  * [Import MARS annotations](https://github.com/sgoldenlab/simba/blob/master/docs/third_party_annot.md) to SimBA
 
 ## Pre-requisites
 1. Install Python 3.x version
 2. Install Miniconda3
-3. Ideally a GPU with suitable CUDA version and PyTorch installation
+3. Ideally work on a workstation with GPU
 
 ### Install DLC
 1. Open Anaconda Prompt
@@ -30,11 +33,12 @@
 7. `python -m deeplabcut` # launch dlc
 
 ### Install BENTO
-1. Download bento source code zip file from [here](https://github.com/neuroethology/bento/releases)
+1. Download the zip file from my forked directory [here](https://github.com/gigishum/bento)
 2. Open Anaconda Prompt
 5. `cd path_to_bento_folder`
 6. `conda env create -f bento.yml`
-7. `python src/bento.py`
+7. `conda activate bento`
+8. `python src/bento.py` # launch bento
 
 ### Install SimBA
 1. Open Anaconda Prompt
@@ -45,8 +49,11 @@
 
 
 ## Citations
-### DeepLabCut
-Mathis A, Mamidanna P, Cury KM, Abe T, Murthy VN, Mathis MW, Bethge M. "DeepLabCut: markerless pose estimation of user-defined body parts with deep learning." Nature Neuroscience 21, 1281–1289 (2018), doi:10.1038/s41593-018-0209-y; and the protocol Nath T, et al. "Using DeepLabCut for 3D markerless pose estimation across species and behaviors." Nature Protocols (2019), doi:10.1038/s41596-019-0176-0.
+**DeepLabCut**\
+Mathis, Alexander, et al. "DeepLabCut: markerless pose estimation of user-defined body parts with deep learning." Nature neuroscience 21.9 (2018): 1281-1289.
 
-### SimBA
-Goodwin NL, Choong JJ, Hwang S, Pitts K, Bloom L, Islam A, et al. "Simple Behavioral Analysis (SimBA) as a platform for explainable machine learning in behavioral neuroscience." Nature Neuroscience 2024 Jul;27(7):1411–1424, doi:10.1038/s41593-024-01649-9 (senior author Sam A. Golden, University of Washington; PMID 38778146).
+**MARS/BENTO**\
+Segalin, Cristina, et al. "The Mouse Action Recognition System (MARS) software pipeline for automated analysis of social behaviors in mice." Elife 10 (2021): e63720.
+
+**SimBA**\
+Goodwin, Nastacia L., et al. "Simple Behavioral Analysis (SimBA) as a platform for explainable machine learning in behavioral neuroscience." Nature neuroscience 27.7 (2024): 1411-1424.
