@@ -38,7 +38,9 @@
 5. `cd path_to_bento_folder`
 6. `conda env create -f bento.yml`
 7. `conda activate bento`
-8. `python src/bento.py` # launch bento
+8. `pip install colour-science==0.4.6 --no-deps`
+9. `pip install colour-demosaicing==0.2.6 --no-deps`
+10. `python src/bento.py` # launch bento
 
 ### Install SimBA
 1. Open Anaconda Prompt
