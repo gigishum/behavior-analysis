@@ -2,10 +2,13 @@
 
 ## Purpose
 * Pose estimation with [**DeepLabCut (DLC)**](https://deeplabcut.github.io/DeepLabCut/README.html)
+* Behavior labeling with [**Mouse Action Recognition System (MARS) and BENTO**](https://github.com/neuroethology/MARS)
 * Behavioral classification with [**Simple Behavioral Analysis (SimBA)**](https://simba-uw-tf-dev.readthedocs.io/en/latest/index.html) 
 
 ## Workflow overview
-DLC → label frames → train DLC network → analyze videos → SimBA → label videos → train SimBA classifiers → analyze videos
+DLC → label frames → train DLC network → analyze videos
+MARS/BENTO → label frames for training data
+SimBA → train behavioral classifiers → analyze videos
 
 ## Installation
 
